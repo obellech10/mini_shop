@@ -1,6 +1,9 @@
-<p><%= @merchants.id %></p>
-<p><%= @merchants.name %></p>
-<p><%= @merchants.address %></p>
-<p><%= @merchants.city %></p>
-<p><%= @merchants.state %></p>
-<p><%= @merchants.zip %></p> 
+<p><%= @merchant.id %></p>
+<p><%= @merchant.name %></p>
+<p><%= @merchant.address %></p>
+<p><%= @merchant.city %></p>
+<p><%= @merchant.state %></p>
+<p><%= @merchant.zip %></p>
+
+<%= link_to 'Edit', "/merchants/#{@merchant.id}/edit" %>
+<%= button_to 'Delete', "/merchants/#{@merchant.id}", method: :delete %>
