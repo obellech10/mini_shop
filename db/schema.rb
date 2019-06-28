@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190625230031) do
+ActiveRecord::Schema.define(version: 20190627211825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.float "price"
+    t.string "image"
+    t.string "status"
+    t.integer "inventory"
+    t.bigint "merchants_id"
+    t.bigint "merchant_id"
+    t.index ["merchant_id"], name: "index_items_on_merchant_id"
+    t.index ["merchants_id"], name: "index_items_on_merchants_id"
+  end
 
   create_table "merchants", force: :cascade do |t|
     t.string "name"
@@ -25,4 +38,6 @@ ActiveRecord::Schema.define(version: 20190625230031) do
     t.string "zip"
   end
 
+  add_foreign_key "items", "merchants"
+  add_foreign_key "items", "merchants", column: "merchants_id"
 end
