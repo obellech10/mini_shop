@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Items index' do
+
   describe 'As a visitor' do
     it 'I can see all the items' do
       merchant_1 = Merchant.create!(name: "Dry Pockets", address: "1008 Royal St George", city: "Naperville", state: "IL", zip: "60654")
@@ -22,8 +23,8 @@ RSpec.describe 'Items index' do
       visit '/items'
 
 
-        expect(page).to have_content(item_1.name)
-        expect(page).to have_content(item_2.name)
+      expect(page).to have_content(item_1.name)
+      expect(page).to have_content(item_2.name)
     end
   end
 
@@ -61,6 +62,39 @@ RSpec.describe 'Items index' do
         expect(page).to have_content(item_2.image)
         expect(page).to have_content(item_2.status)
         expect(page).to have_content(item_2.inventory)
+      end
+    end
+  end
+
+  describe 'Item Show Page' do
+    describe 'As a Visitor' do
+      it 'I see the item with that id including the items
+          - name
+          - status
+          - price
+          - description
+          - image
+          - inventory
+          - merchants name that sells item' do
+
+        merchant = Merchant.create!(name: "Dry Pockets", address: "1008 Royal St George", city: "Naperville", state: "IL", zip: "60654")
+        item = Item.create!(name: "Phone baggie",
+                            description: "Store phone when hiking",
+                            price: 9.99,
+                            image: "pic of baggie",
+                            status: "active",
+                            inventory: 30,
+                            merchant_id: merchant.id)
+
+        visit "/items/#{item.id}"
+
+        expect(page).to have_content(item.name)
+        expect(page).to have_content(item.status)
+        expect(page).to have_content(item.price)
+        expect(page).to have_content(item.description)
+        expect(page).to have_content(item.image)
+        expect(page).to have_content(item.inventory)
+        expect(page).to have_content(merchant.name)
       end
     end
   end
