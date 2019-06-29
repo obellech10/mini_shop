@@ -168,4 +168,51 @@ RSpec.describe 'Items index' do
       end
     end
   end
+
+  describe 'Link to Items Index' do
+    describe 'As a visitor' do
+      it 'I can visit the index from any page' do
+        merchant = Merchant.create(name: "Kitchens r Us", address: "1008 Royal St George", city: "Naperville", state: "IL", zip: "60654")
+        item = Item.create!(name: "Phone Baggie",
+                            description: "Store phone when hiking",
+                            price: 9.99,
+                            image: "pic of baggie",
+                            status: "active",
+                            inventory: 30,
+                            merchant_id: merchant.id)
+
+        visit '/merchants'
+        click_link "Item Index"
+        expect(current_path).to eq('/items')
+
+        visit '/merchants/new'
+        click_link "Item Index"
+        expect(current_path).to eq('/items')
+
+        visit "/merchants/#{merchant.id}"
+        click_link "Item Index"
+        expect(current_path).to eq('/items')
+
+        visit "/merchants/#{merchant.id}/edit"
+        click_link "Item Index"
+        expect(current_path).to eq('/items')
+
+        visit "/items/#{item.id}"
+        click_link "Item Index"
+        expect(current_path).to eq('/items')
+
+        visit "/items/#{item.id}/edit"
+        click_link "Item Index"
+        expect(current_path).to eq('/items')
+
+        visit "/merchants/#{merchant.id}/items"
+        click_link "Item Index"
+        expect(current_path).to eq('/items')
+
+        visit "/merchants/#{merchant.id}/items/new"
+        click_link "Item Index"
+        expect(current_path).to eq('/items')
+      end
+    end
+  end
 end
