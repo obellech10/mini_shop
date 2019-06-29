@@ -1,12 +1,13 @@
 <%= link_to 'Item Index', '/items' %>
 <%= link_to 'Merchant Index', '/merchants' %>
 
-<p><%= @merchant.id %></p>
-<p><%= @merchant.name %></p>
-<p><%= @merchant.address %></p>
-<p><%= @merchant.city %></p>
-<p><%= @merchant.state %></p>
-<p><%= @merchant.zip %></p>
+<h2><%= @merchant.name %></h2>
+  <ul style="list-style-type:none;">
+    <li>Address: <%= @merchant.address %></li>
+    <li>City: <%= @merchant.city %></li>
+    <li>State: <%= @merchant.state %></li>
+    <li>Zip: <%= @merchant.zip %></li>
+  </ul>
 
 <%= link_to 'Edit', "/merchants/#{@merchant.id}/edit" %>
 <%= button_to 'Delete', "/merchants/#{@merchant.id}", method: :delete %>
