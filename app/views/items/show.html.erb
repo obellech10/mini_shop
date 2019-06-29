@@ -1,9 +1,11 @@
-  <h2><%= @item.name %></h2>
-  <p><%= @item.price %></p>
-  <p><%= @item.image %></p>
-  <p><%= @item.description %></p>
-  <p><%= @item.status %></p>
-  <p><%= @item.inventory %></p>
-  <p><%= link_to @merchant.name, "/merchants/#{@merchant.id}" %></p>
+<%= link_to 'Item Index', '/items' %>
 
-  <%= link_to 'Edit', "/items/#{@item.id}/edit" %>
+<h2><%= @item.name %></h2>
+<p><%= @item.price %></p>
+<p><%= @item.image %></p>
+<p><%= @item.description %></p>
+<p><%= @item.status %></p>
+<p><%= @item.inventory %></p>
+<p><%= link_to @merchant.name, "/merchants/#{@merchant.id}" %></p>
+
+<%= link_to 'Edit', "/items/#{@item.id}/edit" %>
