@@ -24,8 +24,7 @@ RSpec.describe "Merchants index" do
       merchant_2 = Merchant.create(name: "Wayne's Sports World", address: "2893 Federal", city: "Tucson", state: "AZ", zip: "47923")
 
       visit "/merchants/#{merchant_1.id}"
-
-      expect(page).to have_content(merchant_1.id)
+ 
       expect(page).to have_content(merchant_1.name)
       expect(page).to have_content(merchant_1.address)
       expect(page).to have_content(merchant_1.city)
