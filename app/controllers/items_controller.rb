@@ -11,6 +11,20 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @merchant = Merchant.find(@item.merchant_id)
-    # binding.pry
+  end
+
+  def new
+    @merchant = Merchant.find(params[:merchant_id])
+  end
+
+  def create
+    @item = Item.create(item_params)
+    redirect_to "/merchants/#{@item.merchant_id}/items"
+  end
+
+  private
+
+  def item_params
+    params.permit(:name, :price, :image, :status, :inventory, :description, :merchant_id)
   end
 end
