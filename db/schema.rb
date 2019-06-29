@@ -22,10 +22,8 @@ ActiveRecord::Schema.define(version: 20190627211825) do
     t.string "image"
     t.string "status"
     t.integer "inventory"
-    t.bigint "merchants_id"
     t.bigint "merchant_id"
     t.index ["merchant_id"], name: "index_items_on_merchant_id"
-    t.index ["merchants_id"], name: "index_items_on_merchants_id"
   end
 
   create_table "merchants", force: :cascade do |t|
@@ -39,5 +37,4 @@ ActiveRecord::Schema.define(version: 20190627211825) do
   end
 
   add_foreign_key "items", "merchants"
-  add_foreign_key "items", "merchants", column: "merchants_id"
 end
