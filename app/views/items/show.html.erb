@@ -2,11 +2,13 @@
 <%= link_to 'Merchant Index', '/merchants' %>
 
 <h2><%= @item.name %></h2>
-<p><%= @item.price %></p>
-<p><%= @item.image %></p>
-<p><%= @item.description %></p>
-<p><%= @item.status %></p>
-<p><%= @item.inventory %></p>
-<p><%= link_to @merchant.name, "/merchants/#{@merchant.id}" %></p>
+  <ul style="list-style-type:none;">
+    <li>Price: <%= @item.price %></li>
+    <li>Image: <%= @item.image %></li>
+    <li>Description: <%= @item.description %></li>
+    <li>Status: <%= @item.status %></li>
+    <li>Inventory: <%= @item.inventory %></li>
+    <li>Sold by: <%= link_to @merchant.name, "/merchants/#{@merchant.id}" %></li>
+  </ul>
 
 <%= link_to 'Edit', "/items/#{@item.id}/edit" %>
