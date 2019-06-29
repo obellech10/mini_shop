@@ -22,9 +22,21 @@ RSpec.describe 'Items index' do
 
       visit '/items'
 
-
       expect(page).to have_content(item_1.name)
+      expect(page).to have_content(item_1.description)
+      expect(page).to have_content(item_1.price)
+      expect(page).to have_content(item_1.image)
+      expect(page).to have_content(item_1.status)
+      expect(page).to have_content(item_1.inventory)
+      expect(page).to have_content(merchant_1.name)
+
       expect(page).to have_content(item_2.name)
+      expect(page).to have_content(item_2.description)
+      expect(page).to have_content(item_2.price)
+      expect(page).to have_content(item_2.image)
+      expect(page).to have_content(item_2.status)
+      expect(page).to have_content(item_2.inventory)
+      expect(page).to have_content(merchant_2.name)
     end
   end
 

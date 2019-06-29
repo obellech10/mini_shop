@@ -59,6 +59,10 @@ RSpec.describe "Merchants index" do
           visit "/merchants/#{merchant_1.id}/items"
           click_link 'Kitchens r Us'
           expect(current_path).to eq("/merchants/#{merchant_1.id}")
+
+          visit '/items'
+          click_link 'Kitchens r Us'
+          expect(current_path).to eq("/merchants/#{merchant_1.id}")
         end
       end
     end
