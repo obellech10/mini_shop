@@ -4,6 +4,6 @@
   <p><%= @item.description %></p>
   <p><%= @item.status %></p>
   <p><%= @item.inventory %></p>
-  <p><%= @merchant.name %></p>
+  <p><%= link_to @merchant.name, "/merchants/#{@merchant.id}" %></p>
 
   <%= link_to 'Edit', "/items/#{@item.id}/edit" %>
