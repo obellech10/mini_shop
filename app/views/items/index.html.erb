@@ -1,10 +1,11 @@
-<h1>Items</h1>
 
 <% if @merchant.nil?  %>
+  <h1>All Items</h1>
   <% @items.each do |item| %>
     <p><%= item.name %></p>
   <% end %>
 <% else  %>
+  <h1>Items for <%= link_to @merchant.name, "/merchants/#{@merchant.id}" %></h1>
   <% @items.each do |item| %>
     <h2><%= item.name %></h2>
     <p><%= item.price %></p>
