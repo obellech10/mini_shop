@@ -4,22 +4,26 @@
 <% if @merchant.nil?  %>
   <h1>All Items</h1>
   <% @items.each do |item| %>
-    <p><%= link_to item.name, "/items/#{item.id}" %></p>
-    <p><%= item.description %></p>
-    <p><%= item.price %></p>
-    <p><%= item.image %></p>
-    <p><%= item.status %></p>
-    <p><%= item.inventory %></p>
-    <p><%= link_to Merchant.find(item.merchant_id).name, "/merchants/#{item.merchant_id}" %></p>
+    <h2><%= link_to item.name, "/items/#{item.id}" %></h2>
+      <ul style="list-style-type:none;">
+        <li>Description: <%= item.description %></li>
+        <li>Price: <%= item.price %></li>
+        <li>Image: <%= item.image %></li>
+        <li>Status: <%= item.status %></li>
+        <li>Inventory: <%= item.inventory %></li>
+        <li>Sold by: <%= link_to Merchant.find(item.merchant_id).name, "/merchants/#{item.merchant_id}" %></li>
+      </ul>
   <% end %>
 <% else  %>
   <h1>Items for <%= link_to @merchant.name, "/merchants/#{@merchant.id}" %></h1>
   <% @items.each do |item| %>
     <h2><%= link_to item.name, "/items/#{item.id}" %></h2>
-    <p><%= item.price %></p>
-    <p><%= item.image %></p>
-    <p><%= item.status %></p>
-    <p><%= item.inventory %></p>
+      <ul style="list-style-type:none;">
+        <li>Price: <%= item.price %></li>
+        <li>Image: <%= item.image %></li>
+        <li>Status: <%= item.status %></li>
+        <li>Inventory: <%= item.inventory %></li>
+      </ul>
   <% end %>
   <p><%= link_to 'New Item', "/merchants/#{@merchant.id}/items/new" %></p>
 <% end %>
