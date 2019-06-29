@@ -33,4 +33,35 @@ RSpec.describe "Merchants index" do
       expect(page).to have_content(merchant_1.zip)
     end
   end
+
+  describe 'Links to Merchants Show page' do
+    describe 'As a visitor' do
+      describe 'When I click on merchant name' do
+        it 'takes me to the merchant show page' do
+
+          merchant_1 = Merchant.create(name: "Kitchens r Us", address: "1008 Royal St George", city: "Naperville", state: "IL", zip: "60654")
+          item = Item.create!(name: "Phone Baggie",
+                              description: "Store phone when hiking",
+                              price: 9.99,
+                              image: "pic of baggie",
+                              status: "active",
+                              inventory: 30,
+                              merchant_id: merchant_1.id)
+
+          visit '/merchants'
+          click_link 'Kitchens r Us'
+          expect(current_path).to eq("/merchants/#{merchant_1.id}")
+
+          visit "/items/#{item.id}"
+          click_link 'Kitchens r Us'
+          expect(current_path).to eq("/merchants/#{merchant_1.id}")
+
+          visit "/merchants/#{merchant_1.id}/items"
+          click_link 'Kitchens r Us'
+          expect(current_path).to eq("/merchants/#{merchant_1.id}")
+        end
+      end
+    end
+  end
+
 end
