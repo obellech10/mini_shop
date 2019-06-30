@@ -1,8 +1,13 @@
+<nav class="navbar navbar-expand-sm bg-dark fixed-top">
+  <ul class="navbar-nav">
+    <li class="nav-link"><%= link_to 'Item Index', '/items' %></li>
+    <li class="nav-link"><%= link_to 'New Merchant', '/merchants/new' %></li>
+  </ul>
+</nav>
 
-<%= link_to 'New Merchant', '/merchants/new' %>
-<%= link_to 'Item Index', '/items' %>
-
-<h1>All Merchants</h1>
-<% @merchants.each do |merchant| %>
-  <p><%= link_to merchant.name, "/merchants/#{merchant.id}" %></p>
-<% end %>
+<section class="container-fluid">
+  <h1>All Merchants</h1>
+  <% @merchants.each do |merchant| %>
+    <h3><%= link_to merchant.name, "/merchants/#{merchant.id}" %></h3>
+  <% end %>
+</section>
