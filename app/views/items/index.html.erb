@@ -1,29 +1,36 @@
-<%= link_to 'Item Index', '/items' %>
-<%= link_to 'Merchant Index', '/merchants' %>
+<nav class="navbar navbar-expand-sm bg-dark fixed-top">
+  <ul class="navbar-nav">
+    <li class="nav-link"><%= link_to 'Item Index', '/items' %></li>
+    <li class="nav-link"><%= link_to 'Merchant Index', '/merchants' %></li>
+  </ul>
+</nav>
 
-<% if @merchant.nil?  %>
-  <h1>All Items</h1>
-  <% @items.each do |item| %>
-    <h2><%= link_to item.name, "/items/#{item.id}" %></h2>
-      <ul style="list-style-type:none;">
-        <li>Description: <%= item.description %></li>
-        <li>Price: <%= item.price %></li>
-        <li>Image: <%= item.image %></li>
-        <li>Status: <%= item.status %></li>
-        <li>Inventory: <%= item.inventory %></li>
-        <li>Sold by: <%= link_to Merchant.find(item.merchant_id).name, "/merchants/#{item.merchant_id}" %></li>
-      </ul>
+<section class="container-fluid">
+  <% if @merchant.nil?  %>
+    <h1>All Items</h1>
+    <% @items.each do |item| %>
+      <h2><%= link_to item.name, "/items/#{item.id}" %></h2>
+        <ul class="list-group">
+          <li class="list-group-item bg-light">Description: <%= item.description %></li>
+          <li class="list-group-item bg-light">Price: <%= item.price %></li>
+          <li class="list-group-item bg-light">Image: <%= item.image %></li>
+          <li class="list-group-item bg-light">Status: <%= item.status %></li>
+          <li class="list-group-item bg-light">Inventory: <%= item.inventory %></li>
+          <li class="list-group-item bg-light">Sold by: <%= link_to Merchant.find(item.merchant_id).name, "/merchants/#{item.merchant_id}" %></li>
+        </ul>
+    <% end %>
+  <% else  %>
+    <h1>Items for <%= link_to @merchant.name, "/merchants/#{@merchant.id}" %></h1>
+    <% @items.each do |item| %>
+      <h2><%= link_to item.name, "/items/#{item.id}" %></h2>
+        <ul class="list-group">
+          <li class="list-group-item bg-light">Price: <%= item.price %></li>
+          <li class="list-group-item bg-light">Image: <%= item.image %></li>
+          <li class="list-group-item bg-light">Status: <%= item.status %></li>
+          <li class="list-group-item bg-light">Inventory: <%= item.inventory %></li>
+        </ul>
+    <% end %>
+
+    <button class="btn"><p><%= link_to 'New Item', "/merchants/#{@merchant.id}/items/new" %></p></button>
   <% end %>
-<% else  %>
-  <h1>Items for <%= link_to @merchant.name, "/merchants/#{@merchant.id}" %></h1>
-  <% @items.each do |item| %>
-    <h2><%= link_to item.name, "/items/#{item.id}" %></h2>
-      <ul style="list-style-type:none;">
-        <li>Price: <%= item.price %></li>
-        <li>Image: <%= item.image %></li>
-        <li>Status: <%= item.status %></li>
-        <li>Inventory: <%= item.inventory %></li>
-      </ul>
-  <% end %>
-  <p><%= link_to 'New Item', "/merchants/#{@merchant.id}/items/new" %></p>
-<% end %>
+</section>
